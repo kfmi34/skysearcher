@@ -2,34 +2,11 @@ import { useState } from "react";
 import SearchBar from "@/components/SearchBar";
 import ImageGrid from "@/components/ImageGrid";
 import LoadingSpinner from "@/components/LoadingSpinner";
-
-// Mock data for demonstration
-const mockImages = [
-  {
-    id: "1",
-    url: "https://source.unsplash.com/random/800x800?ai=1",
-    title: "AI Generated Art 1",
-  },
-  {
-    id: "2",
-    url: "https://source.unsplash.com/random/800x800?future=1",
-    title: "AI Generated Art 2",
-  },
-  {
-    id: "3",
-    url: "https://source.unsplash.com/random/800x800?tech=1",
-    title: "AI Generated Art 3",
-  },
-  {
-    id: "4",
-    url: "https://source.unsplash.com/random/800x800?digital=1",
-    title: "AI Generated Art 4",
-  },
-];
+import TrendingCategories from "@/components/TrendingCategories";
+import BottomNavigation from "@/components/BottomNavigation";
 
 const Index = () => {
   const [loading, setLoading] = useState(false);
-  const [images, setImages] = useState(mockImages);
 
   const handleSearch = async (query: string) => {
     setLoading(true);
@@ -39,24 +16,29 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-primary">
-      <div className="container mx-auto px-4 py-16">
-        <div className="text-center mb-12">
+    <div className="min-h-screen bg-gradient-to-b from-primary to-secondary pb-20">
+      <div className="container mx-auto px-4 py-8">
+        <div className="text-center mb-8">
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 animate-fade-in">
-            AI Image Search
+            Fashion AI
           </h1>
           <p className="text-gray-400 text-lg mb-8 animate-fade-in">
-            Search through millions of AI-generated images
+            Discover your perfect style with AI
           </p>
           <SearchBar onSearch={handleSearch} />
         </div>
         
-        {loading ? (
-          <LoadingSpinner />
-        ) : (
-          <ImageGrid images={images} />
-        )}
+        <TrendingCategories />
+        
+        <div className="mt-12">
+          <h2 className="text-2xl font-semibold text-white mb-6 px-4">
+            Featured Collection
+          </h2>
+          {loading ? <LoadingSpinner /> : <ImageGrid />}
+        </div>
       </div>
+      
+      <BottomNavigation />
     </div>
   );
 };
