@@ -24,7 +24,7 @@ const SearchBar = ({ onSearch }: SearchBarProps) => {
               type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search for trendy styles..."
+              placeholder="Discover your perfect style with AI"
               className="w-full px-4 py-2 bg-transparent border-none focus:outline-none text-white placeholder-white/70"
             />
           </div>
