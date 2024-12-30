@@ -17,12 +17,12 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-primary to-secondary pb-20">
-      <div className="container mx-auto px-4 py-8">
-        <div className="text-center mb-8">
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 animate-fade-in">
+      <div className="container mx-auto px-4 py-4">
+        <div className="text-center mb-6">
+          <h1 className="text-2xl md:text-3xl font-bold text-white mb-2 animate-fade-in">
             Fashion AI
           </h1>
-          <p className="text-gray-400 text-lg mb-8 animate-fade-in">
+          <p className="text-gray-400 text-sm mb-4 animate-fade-in">
             Discover your perfect style with AI
           </p>
           <SearchBar onSearch={handleSearch} />
@@ -30,8 +30,8 @@ const Index = () => {
         
         <TrendingCategories />
         
-        <div className="mt-12">
-          <h2 className="text-2xl font-semibold text-white mb-6 px-4">
+        <div className="mt-8">
+          <h2 className="text-xl font-semibold text-white mb-4 px-4">
             Featured Collection
           </h2>
           {loading ? <LoadingSpinner /> : <ImageGrid />}
