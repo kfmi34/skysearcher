@@ -12,7 +12,7 @@ export default {
   theme: {
     container: {
       center: true,
-      padding: "2rem",
+      padding: "1rem",
       screens: {
         "2xl": "1400px",
       },
@@ -22,19 +22,19 @@ export default {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
+        background: "#F8F3FF",
+        foreground: "#1A1A1A",
         primary: {
-          DEFAULT: "#1a1f2c",
-          foreground: "#ffffff",
+          DEFAULT: "#D6BCFA",
+          foreground: "#1A1A1A",
         },
         secondary: {
-          DEFAULT: "#2d3748",
-          foreground: "#ffffff",
+          DEFAULT: "#E5DEFF",
+          foreground: "#1A1A1A",
         },
         accent: {
-          DEFAULT: "#3b82f6",
-          foreground: "#ffffff",
+          DEFAULT: "#9B87F5",
+          foreground: "#FFFFFF",
         },
       },
       animation: {
@@ -50,6 +50,10 @@ export default {
           "0%": { transform: "translateY(20px)", opacity: "0" },
           "100%": { transform: "translateY(0)", opacity: "1" },
         },
+      },
+      borderRadius: {
+        'xl': '1rem',
+        '2xl': '1.5rem',
       },
     },
   },

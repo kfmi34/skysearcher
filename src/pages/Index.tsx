@@ -16,23 +16,27 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-primary to-secondary pb-20">
-      <div className="container mx-auto px-4 py-4">
-        <div className="mb-6">
-          <h1 className="text-2xl font-bold text-white mb-6 text-left animate-fade-in">
-            Fashion AI
-          </h1>
-          <SearchBar onSearch={handleSearch} />
-        </div>
-        
+    <div className="min-h-screen bg-background">
+      <div className="container mx-auto pt-6 pb-20">
+        <SearchBar onSearch={handleSearch} />
         <TrendingCategories />
         
-        <div className="mt-8">
-          <h2 className="text-xl font-semibold text-white mb-4 px-4">
-            Featured Collection
-          </h2>
-          {loading ? <LoadingSpinner /> : <ImageGrid />}
-        </div>
+        {loading ? (
+          <LoadingSpinner />
+        ) : (
+          <>
+            <div className="mt-6">
+              <div className="aspect-[2/1] rounded-2xl overflow-hidden mb-8">
+                <img
+                  src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d"
+                  alt="Fashion banner"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <ImageGrid />
+            </div>
+          </>
+        )}
       </div>
       
       <BottomNavigation />

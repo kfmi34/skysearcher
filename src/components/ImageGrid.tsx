@@ -1,49 +1,53 @@
-import ImageCard from "./ImageCard";
+import { Link } from "react-router-dom";
 
-const fashionItems = [
+const fashionCategories = [
   {
     id: "1",
-    url: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158",
-    title: "Premium White Shirt",
-    price: "$89.99"
+    url: "https://images.unsplash.com/photo-1595777457583-95e059d581b8",
+    title: "Dresses",
+    path: "/category/dresses"
   },
   {
     id: "2",
-    url: "https://images.unsplash.com/photo-1581092795360-662d53c6d0c8",
-    title: "Classic Black Shirt",
-    price: "$69.99"
+    url: "https://images.unsplash.com/photo-1604335398480-e944c5c5ac89",
+    title: "Tops",
+    path: "/category/tops"
   },
   {
     id: "3",
-    url: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f",
-    title: "Casual Denim Jacket",
-    price: "$129.99"
+    url: "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1",
+    title: "Trousers",
+    path: "/category/trousers"
   },
   {
     id: "4",
-    url: "https://images.unsplash.com/photo-1554412933-514a83d2f3c8",
-    title: "Designer Blazer",
-    price: "$199.99"
+    url: "https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa",
+    title: "Skirts",
+    path: "/category/skirts"
   }
 ];
 
-interface Image {
-  id: string;
-  url: string;
-  title: string;
-  price?: string;
-}
-
-interface ImageGridProps {
-  images?: Image[];
-}
-
-const ImageGrid = ({ images = fashionItems }: ImageGridProps) => {
+const ImageGrid = () => {
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
-      {images.map((image) => (
-        <ImageCard key={image.id} url={image.url} title={image.title} price={image.price} />
-      ))}
+    <div className="px-4">
+      <h2 className="text-xl font-semibold text-gray-800 mb-4">STYLE BY CATEGORY</h2>
+      <div className="grid grid-cols-2 gap-4">
+        {fashionCategories.map((category) => (
+          <Link key={category.id} to={category.path}>
+            <div className="relative rounded-2xl overflow-hidden aspect-square">
+              <img
+                src={category.url}
+                alt={category.title}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-black/20" />
+              <div className="absolute bottom-4 left-4">
+                <h3 className="text-white text-lg font-semibold">{category.title}</h3>
+              </div>
+            </div>
+          </Link>
+        ))}
+      </div>
     </div>
   );
 };
