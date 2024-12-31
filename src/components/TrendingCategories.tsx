@@ -7,27 +7,31 @@ const categories = [
     id: 1,
     title: "New Arrivals",
     icon: Sparkles,
+    image: "https://images.unsplash.com/photo-1483985988355-763728e1935b",
   },
   {
     id: 2,
     title: "Trending",
     icon: Crown,
+    image: "https://images.unsplash.com/photo-1445205170230-053b83016050",
   },
   {
     id: 3,
     title: "Most Popular",
     icon: Star,
+    image: "https://images.unsplash.com/photo-1485230895905-ec40ba36b9bc",
   },
   {
     id: 4,
     title: "Editor's Pick",
     icon: Shirt,
+    image: "https://images.unsplash.com/photo-1479064555552-3ef4979f8908",
   }
 ];
 
 const TrendingCategories = () => {
   return (
-    <div className="w-full py-6">
+    <div className="w-full py-4">
       <Carousel
         opts={{
           align: "start",
@@ -37,11 +41,17 @@ const TrendingCategories = () => {
       >
         <CarouselContent className="-ml-2 md:-ml-4">
           {categories.map((category) => (
-            <CarouselItem key={category.id} className="pl-2 md:pl-4 basis-1/2 md:basis-1/4">
-              <Card className="p-4 bg-white/50 backdrop-blur-sm border-none hover:bg-white/60 transition-colors cursor-pointer">
-                <div className="flex flex-col items-center space-y-2">
-                  <category.icon className="w-6 h-6 text-accent" />
-                  <span className="text-sm font-medium text-foreground">{category.title}</span>
+            <CarouselItem key={category.id} className="pl-2 md:pl-4 basis-full">
+              <Card className="relative overflow-hidden rounded-xl aspect-[16/9]">
+                <img
+                  src={category.image}
+                  alt={category.title}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent" />
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
+                  <category.icon className="w-8 h-8 mb-2" />
+                  <span className="text-lg font-medium">{category.title}</span>
                 </div>
               </Card>
             </CarouselItem>
