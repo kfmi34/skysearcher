@@ -97,27 +97,28 @@ const shoppingItems = [
 
 const CategoryCarousel = ({ items, title }: { items: typeof fashionCategories, title: string }) => {
   return (
-    <div className="w-full py-2">
-      <h2 className="text-lg font-semibold text-foreground mb-2 px-4">{title}</h2>
+    <div className="w-full py-1">
+      <h2 className="text-base font-semibold text-foreground mb-1 px-4">{title}</h2>
       <Carousel
         opts={{
           align: "start",
           loop: true,
+          dragFree: true,
         }}
         className="w-full"
       >
-        <CarouselContent className="-ml-2 md:-ml-4">
+        <CarouselContent className="-ml-1 md:-ml-2">
           {items.map((item) => (
-            <CarouselItem key={item.id} className="pl-2 md:pl-4 basis-1/2 md:basis-1/4">
-              <Card className="relative overflow-hidden rounded-xl aspect-[3/4]">
+            <CarouselItem key={item.id} className="pl-1 md:pl-2 basis-1/3 md:basis-1/5">
+              <Card className="relative overflow-hidden rounded-lg aspect-[3/4]">
                 <img
                   src={item.url}
                   alt={item.title}
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                <div className="absolute bottom-2 left-2">
-                  <h3 className="text-white text-sm font-medium">{item.title}</h3>
+                <div className="absolute bottom-1 left-1">
+                  <h3 className="text-white text-xs font-medium">{item.title}</h3>
                 </div>
               </Card>
             </CarouselItem>
@@ -145,7 +146,7 @@ const ShoppingSection = () => {
 
 const ImageGrid = () => {
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <CategoryCarousel items={fashionCategories} title="STYLE BY CATEGORY" />
       <CategoryCarousel items={occasions} title="STYLE BY OCCASION" />
       <div className="py-2">
