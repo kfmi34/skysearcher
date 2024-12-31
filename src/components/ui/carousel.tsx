@@ -74,19 +74,6 @@ const Carousel = React.forwardRef<
       api?.scrollNext()
     }, [api])
 
-    const handleWheel = React.useCallback(
-      (event: WheelEvent) => {
-        if (!api) return
-        event.preventDefault()
-        if (event.deltaX > 0) {
-          api.scrollNext()
-        } else if (event.deltaX < 0) {
-          api.scrollPrev()
-        }
-      },
-      [api]
-    )
-
     React.useEffect(() => {
       if (!api || !setApi) return
       setApi(api)
@@ -98,18 +85,10 @@ const Carousel = React.forwardRef<
       api.on("reInit", onSelect)
       api.on("select", onSelect)
 
-      const emblaNode = carouselRef.current
-      if (emblaNode) {
-        emblaNode.addEventListener("wheel", handleWheel, { passive: false })
-      }
-
       return () => {
         api.off("select", onSelect)
-        if (emblaNode) {
-          emblaNode.removeEventListener("wheel", handleWheel)
-        }
       }
-    }, [api, carouselRef, handleWheel, onSelect])
+    }, [api, onSelect])
 
     return (
       <CarouselContext.Provider
