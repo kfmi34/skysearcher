@@ -98,15 +98,15 @@ const Carousel = React.forwardRef<
       api.on("reInit", onSelect)
       api.on("select", onSelect)
 
-      const currentRef = carouselRef.current
-      if (currentRef) {
-        currentRef.addEventListener("wheel", handleWheel, { passive: false })
+      const emblaNode = carouselRef.current
+      if (emblaNode) {
+        emblaNode.addEventListener("wheel", handleWheel, { passive: false })
       }
 
       return () => {
         api.off("select", onSelect)
-        if (currentRef) {
-          currentRef.removeEventListener("wheel", handleWheel)
+        if (emblaNode) {
+          emblaNode.removeEventListener("wheel", handleWheel)
         }
       }
     }, [api, carouselRef, handleWheel, onSelect])
