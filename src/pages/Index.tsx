@@ -3,6 +3,7 @@ import SearchBar from "@/components/SearchBar";
 import ImageGrid from "@/components/ImageGrid";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import TrendingCategories from "@/components/TrendingCategories";
+import BottomNavigation from "@/components/BottomNavigation";
 import { Sparkles } from "lucide-react";
 
 const Index = () => {
@@ -38,6 +39,8 @@ const Index = () => {
           </>
         )}
       </div>
+      
+      <BottomNavigation />
     </div>
   );
 };

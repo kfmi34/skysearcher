@@ -17,7 +17,7 @@ const BottomNavigation = () => {
           <Link
             key={item.label}
             to={item.path}
-            className="flex flex-col items-center space-y-1 text-white/70 hover:text-white transition-colors"
+            className="flex flex-col items-center space-y-1 text-foreground/70 hover:text-foreground transition-colors"
           >
             <item.icon className="w-6 h-6" />
             <span className="text-xs">{item.label}</span>
