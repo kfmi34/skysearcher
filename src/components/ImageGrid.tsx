@@ -98,7 +98,7 @@ const shoppingItems = [
 const CategoryCarousel = ({ items, title }: { items: typeof fashionCategories, title: string }) => {
   return (
     <div className="w-full py-1">
-      <h2 className="text-base font-semibold text-foreground mb-1 px-4">{title}</h2>
+      <h2 className="text-sm font-semibold text-foreground mb-1 px-4">{title}</h2>
       <Carousel
         opts={{
           align: "start",
@@ -109,7 +109,7 @@ const CategoryCarousel = ({ items, title }: { items: typeof fashionCategories, t
       >
         <CarouselContent className="-ml-1 md:-ml-2">
           {items.map((item) => (
-            <CarouselItem key={item.id} className="pl-1 md:pl-2 basis-1/3 md:basis-1/5">
+            <CarouselItem key={item.id} className="pl-1 md:pl-2 basis-1/3 md:basis-1/4">
               <Card className="relative overflow-hidden rounded-lg aspect-[3/4]">
                 <img
                   src={item.url}
@@ -147,8 +147,14 @@ const ShoppingSection = () => {
 const ImageGrid = () => {
   return (
     <div className="space-y-4">
-      <CategoryCarousel items={fashionCategories} title="STYLE BY CATEGORY" />
-      <CategoryCarousel items={occasions} title="STYLE BY OCCASION" />
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="w-full">
+          <CategoryCarousel items={fashionCategories} title="STYLE BY CATEGORY" />
+        </div>
+        <div className="w-full">
+          <CategoryCarousel items={occasions} title="STYLE BY OCCASION" />
+        </div>
+      </div>
       <div className="py-2">
         <h2 className="text-lg font-semibold text-foreground mb-4 px-4">FEATURED ITEMS</h2>
         <ShoppingSection />
