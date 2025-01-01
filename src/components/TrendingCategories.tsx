@@ -1,4 +1,3 @@
-import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import { Card } from "@/components/ui/card";
 import { Sparkles, Shirt, Crown, Star } from "lucide-react";
 
@@ -31,33 +30,23 @@ const categories = [
 
 const TrendingCategories = () => {
   return (
-    <div className="w-full py-4">
-      <Carousel
-        opts={{
-          align: "start",
-          loop: true,
-        }}
-        className="w-full"
-      >
-        <CarouselContent className="-ml-2 md:-ml-4">
-          {categories.map((category) => (
-            <CarouselItem key={category.id} className="pl-2 md:pl-4 basis-full">
-              <Card className="relative overflow-hidden rounded-xl aspect-[16/9]">
-                <img
-                  src={category.image}
-                  alt={category.title}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent" />
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
-                  <category.icon className="w-8 h-8 mb-2" />
-                  <span className="text-lg font-medium">{category.title}</span>
-                </div>
-              </Card>
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-      </Carousel>
+    <div className="w-full py-4 px-4">
+      <div className="grid grid-cols-4 gap-4">
+        {categories.map((category) => (
+          <Card key={category.id} className="relative overflow-hidden rounded-xl aspect-[16/9]">
+            <img
+              src={category.image}
+              alt={category.title}
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent" />
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
+              <category.icon className="w-8 h-8 mb-2" />
+              <span className="text-lg font-medium">{category.title}</span>
+            </div>
+          </Card>
+        ))}
+      </div>
     </div>
   );
 };
