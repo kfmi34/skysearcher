@@ -31,9 +31,9 @@ const categories = [
 const TrendingCategories = () => {
   return (
     <div className="w-full py-4 px-4">
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-4 gap-2">
         {categories.map((category) => (
-          <Card key={category.id} className="relative overflow-hidden rounded-xl aspect-[16/9]">
+          <Card key={category.id} className="relative overflow-hidden rounded-xl aspect-[3/2]">
             <img
               src={category.image}
               alt={category.title}
@@ -41,8 +41,8 @@ const TrendingCategories = () => {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent" />
             <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
-              <category.icon className="w-8 h-8 mb-2" />
-              <span className="text-lg font-medium">{category.title}</span>
+              <category.icon className="w-6 h-6 mb-1" />
+              <span className="text-sm font-medium">{category.title}</span>
             </div>
           </Card>
         ))}
