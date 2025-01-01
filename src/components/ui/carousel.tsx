@@ -1,7 +1,6 @@
 import * as React from "react"
 import useEmblaCarousel, {
   type UseEmblaCarouselType,
-  type EmblaCarouselType 
 } from "embla-carousel-react"
 
 type CarouselApi = UseEmblaCarouselType[1]
