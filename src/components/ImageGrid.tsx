@@ -135,10 +135,8 @@ const ShoppingSection = () => {
 const ImageGrid = () => {
   return (
     <div className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <CategorySection items={fashionCategories} title="STYLE BY CATEGORY" />
-        <CategorySection items={occasions} title="STYLE BY OCCASION" />
-      </div>
+      <CategorySection items={fashionCategories} title="STYLE BY CATEGORY" />
+      <CategorySection items={occasions} title="STYLE BY OCCASION" />
       <div className="py-2">
         <h2 className="text-lg font-semibold text-foreground mb-4 px-4">FEATURED ITEMS</h2>
         <ShoppingSection />
