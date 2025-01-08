@@ -1,4 +1,3 @@
-import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import { Card } from "@/components/ui/card";
 import ImageCard from "./ImageCard";
 
@@ -95,36 +94,25 @@ const shoppingItems = [
   }
 ];
 
-const CategoryCarousel = ({ items, title }: { items: typeof fashionCategories, title: string }) => {
+const CategorySection = ({ items, title }: { items: typeof fashionCategories, title: string }) => {
   return (
-    <div className="w-full py-1">
-      <h2 className="text-sm font-semibold text-foreground mb-1 px-4">{title}</h2>
-      <Carousel
-        opts={{
-          align: "start",
-          loop: true,
-          dragFree: true,
-        }}
-        className="w-full"
-      >
-        <CarouselContent className="-ml-1 md:-ml-2">
-          {items.map((item) => (
-            <CarouselItem key={item.id} className="pl-1 md:pl-2 basis-1/3 md:basis-1/4">
-              <Card className="relative overflow-hidden rounded-lg aspect-[3/4]">
-                <img
-                  src={item.url}
-                  alt={item.title}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                <div className="absolute bottom-1 left-1">
-                  <h3 className="text-white text-xs font-medium">{item.title}</h3>
-                </div>
-              </Card>
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-      </Carousel>
+    <div className="w-full">
+      <h2 className="text-sm font-semibold text-foreground mb-2 px-4">{title}</h2>
+      <div className="grid grid-cols-4 gap-2 px-4">
+        {items.map((item) => (
+          <Card key={item.id} className="relative overflow-hidden rounded-lg aspect-square">
+            <img
+              src={item.url}
+              alt={item.title}
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+            <div className="absolute bottom-1 left-1">
+              <h3 className="text-white text-xs font-medium">{item.title}</h3>
+            </div>
+          </Card>
+        ))}
+      </div>
     </div>
   );
 };
@@ -146,14 +134,10 @@ const ShoppingSection = () => {
 
 const ImageGrid = () => {
   return (
-    <div className="space-y-4">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="w-full">
-          <CategoryCarousel items={fashionCategories} title="STYLE BY CATEGORY" />
-        </div>
-        <div className="w-full">
-          <CategoryCarousel items={occasions} title="STYLE BY OCCASION" />
-        </div>
+    <div className="space-y-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <CategorySection items={fashionCategories} title="STYLE BY CATEGORY" />
+        <CategorySection items={occasions} title="STYLE BY OCCASION" />
       </div>
       <div className="py-2">
         <h2 className="text-lg font-semibold text-foreground mb-4 px-4">FEATURED ITEMS</h2>
