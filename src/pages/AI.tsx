@@ -1,15 +1,21 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Sparkles, Camera, ImagePlus } from "lucide-react";
 import { toast } from "sonner";
 import BottomNavigation from "@/components/BottomNavigation";
 import LoadingSpinner from "@/components/LoadingSpinner";
-import ImageCard from "@/components/ImageCard";
+import { generateImage, checkGenerationStatus, type GenerationResponse } from "@/lib/replicate";
 
 const AI = () => {
   const [prompt, setPrompt] = useState("");
   const [loading, setLoading] = useState(false);
-  const [apiKey, setApiKey] = useState("");
+  const [apiKey, setApiKey] = useState(() => localStorage.getItem("replicateApiKey") || "");
   const [generatedImages, setGeneratedImages] = useState<string[]>([]);
+
+  useEffect(() => {
+    if (apiKey) {
+      localStorage.setItem("replicateApiKey", apiKey);
+    }
+  }, [apiKey]);
 
   const handleGenerate = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -24,16 +30,36 @@ const AI = () => {
 
     setLoading(true);
     try {
-      // Placeholder for API integration
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      // Mock generated image
-      setGeneratedImages(prev => [...prev, "https://source.unsplash.com/random/400x500/?fashion"]);
-      toast.success("Image generated successfully!");
+      const initialResponse = await generateImage(prompt, apiKey);
+      
+      // Poll for status updates
+      const pollInterval = setInterval(async () => {
+        const statusResponse = await checkGenerationStatus(initialResponse.urls.get, apiKey);
+        
+        if (statusResponse.status === "succeeded" && statusResponse.output) {
+          clearInterval(pollInterval);
+          setGeneratedImages(prev => [...statusResponse.output!, ...prev]);
+          setLoading(false);
+          toast.success("Image generated successfully!");
+        } else if (statusResponse.status === "failed") {
+          clearInterval(pollInterval);
+          setLoading(false);
+          toast.error("Failed to generate image");
+        }
+      }, 1000);
+
+      // Cleanup interval after 5 minutes (maximum waiting time)
+      setTimeout(() => {
+        clearInterval(pollInterval);
+        if (loading) {
+          setLoading(false);
+          toast.error("Generation timed out");
+        }
+      }, 300000);
+
     } catch (error) {
-      toast.error("Failed to generate image");
-      console.error(error);
-    } finally {
       setLoading(false);
+      // Error handling is done in the generateImage function
     }
   };
 
@@ -99,11 +125,16 @@ const AI = () => {
               <h2 className="text-lg font-semibold text-foreground">Generated Images</h2>
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {generatedImages.map((url, index) => (
-                  <ImageCard
+                  <div
                     key={index}
-                    url={url}
-                    title={`Generated Fashion ${index + 1}`}
-                  />
+                    className="aspect-[3/4] rounded-xl overflow-hidden bg-white/5"
+                  >
+                    <img
+                      src={url}
+                      alt={`Generated Fashion ${index + 1}`}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
                 ))}
               </div>
             </div>
